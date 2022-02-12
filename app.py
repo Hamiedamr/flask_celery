@@ -61,9 +61,11 @@ def register():
         db.session.add(user)
         try:
             db.session.commit()
+            message ="Successed!"
         except Exception as e:
             db.session.rollback()
             db.session.flush()
+            message = "Failed!"
         
     return render_template('message.html', message=message)
 
@@ -73,9 +75,7 @@ def search():
     if query != cache.get('query'):
         userResult = db.session.query(User).filter(User.email == query)
         if userResult.count() == 0:
-            print('I am here!')
             respose = create_new_user.apply_async(args=[query]).get()
-            print(respose)
             if respose['status'] == 'Created':
                 return make_response(jsonify(respose), 202)
             else:
