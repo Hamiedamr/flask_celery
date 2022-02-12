@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Registeration Form</title>
+    <style>
+      input {
+        margin: 0.25em;
+      }
+    </style>
+ </head>
+  <body>
+    <h1>Register For Our Club!</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+      <div>
+        <input type="text" name="fname" placeholder="First Name">
+      </div>
+      <div>
+        <input type="text" name="lname" placeholder="Last Name">
+      </div>
+      <div>
+        <input type="email" name="email" placeholder="user@example.com">
+      </div>
+      <input type="submit" name="submit" value="Register">
+    </form>
+
+    <h2>Search for A Memeber</h2>
+    <form action="{{url_for('search')}}" method="get">
+      <input type="email" name="query" placeholder="Type User's Email!">
+      <input type="submit" value="Search">
+    </form>
+    <h3>{{ message }}</h3>
+  </body>
+</html>
